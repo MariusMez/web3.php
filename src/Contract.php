@@ -586,7 +586,7 @@ class Contract
             $arguments = func_get_args();
             $method = array_splice($arguments, 0, 1)[0];
             $callback = array_pop($arguments);
-            
+
             if (!is_string($method)) {
                 throw new InvalidArgumentException('Please make sure the method is string.');
             }
@@ -596,7 +596,7 @@ class Contract
                 if ($function["name"] === $method) {
                     $functions[] = $function;
                 }
-            };
+            }
             if (count($functions) < 1) {
                 throw new InvalidArgumentException('Please make sure the method exists.');
             }

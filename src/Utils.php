@@ -292,7 +292,7 @@ class Utils
      * 
      * @param BigNumber|string $number
      * @param string $unit
-     * @return \phpseclib\Math\BigInteger
+     * @return BigNumber
      */
     public static function toWei($number, $unit)
     {
@@ -325,7 +325,7 @@ class Utils
             // $base = (new BigNumber(10))->pow(new BigNumber($fractionLength));
 
             // So we switch phpseclib special global param, change in the future
-            switch (MATH_BIGINTEGER_MODE) {
+            /*switch (MATH_BIGINTEGER_MODE) {
                 case $whole::MODE_GMP:
                     static $two;
                     $powerBase = gmp_pow(gmp_init(10), (int) $fractionLength);
@@ -336,8 +336,9 @@ class Utils
                 default:
                     $powerBase = pow(10, (int) $fractionLength);
                     break;
-            }
-            $base = new BigNumber($powerBase);
+            }*/
+            //$base = new BigNumber($powerBase);
+            $base = (new BigNumber(10))->pow(new BigNumber($fractionLength));
             $fraction = $fraction->multiply($bnt)->divide($base)[0];
 
             if ($negative1 !== false) {
@@ -483,7 +484,7 @@ class Utils
      * Change number or number string to bignumber.
      * 
      * @param BigNumber|string|int $number
-     * @return array|\phpseclib\Math\BigInteger
+     * @return array|BigNumber
      */
     public static function toBn($number)
     {
