@@ -11,11 +11,10 @@
 
 namespace Web3;
 
-use RuntimeException;
 use InvalidArgumentException;
 use stdClass;
 use kornrunner\Keccak;
-use phpseclib\Math\BigInteger as BigNumber;
+use phpseclib3\Math\BigInteger as BigNumber;
 
 class Utils
 {

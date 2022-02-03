@@ -586,9 +586,7 @@ class Contract
             $arguments = func_get_args();
             $method = array_splice($arguments, 0, 1)[0];
             $callback = array_pop($arguments);
-
-            $arguments = is_array($arguments[0]) ? $arguments[0] : $arguments;
-
+            
             if (!is_string($method)) {
                 throw new InvalidArgumentException('Please make sure the method is string.');
             }
