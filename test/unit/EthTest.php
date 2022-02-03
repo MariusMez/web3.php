@@ -23,7 +23,7 @@ class EthTest extends TestCase
      * 
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -66,9 +66,9 @@ class EthTest extends TestCase
      * 
      * @return void
      */
-    public function testCallThrowRuntimeException()
+    public function testCallTTypeError()
     {
-        $this->expectException(RuntimeException::class);
+        $this->expectException(\TypeError::class);
 
         $eth = new Eth(null);
         $eth->protocolVersion();

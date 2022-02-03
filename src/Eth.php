@@ -21,33 +21,33 @@ class Eth
     /**
      * provider
      *
-     * @var \Web3\Providers\Provider
+     * @var HttpProvider|Provider
      */
-    protected $provider;
+    protected HttpProvider|Provider $provider;
 
     /**
      * methods
      * 
      * @var array
      */
-    private $methods = [];
+    private array $methods = [];
 
     /**
      * allowedMethods
      * 
      * @var array
      */
-    private $allowedMethods = [
+    private array $allowedMethods = [
         'eth_protocolVersion', 'eth_syncing', 'eth_coinbase', 'eth_mining', 'eth_hashrate', 'eth_gasPrice', 'eth_accounts', 'eth_blockNumber', 'eth_getBalance', 'eth_getStorageAt', 'eth_getTransactionCount', 'eth_getBlockTransactionCountByHash', 'eth_getBlockTransactionCountByNumber', 'eth_getUncleCountByBlockHash', 'eth_getUncleCountByBlockNumber', 'eth_getUncleByBlockHashAndIndex', 'eth_getUncleByBlockNumberAndIndex', 'eth_getCode', 'eth_sign', 'eth_sendTransaction', 'eth_sendRawTransaction', 'eth_call', 'eth_estimateGas', 'eth_getBlockByHash', 'eth_getBlockByNumber', 'eth_getTransactionByHash', 'eth_getTransactionByBlockHashAndIndex', 'eth_getTransactionByBlockNumberAndIndex', 'eth_getTransactionReceipt', 'eth_compileSolidity', 'eth_compileLLL', 'eth_compileSerpent', 'eth_getWork', 'eth_newFilter', 'eth_newBlockFilter', 'eth_newPendingTransactionFilter', 'eth_uninstallFilter', 'eth_getFilterChanges', 'eth_getFilterLogs', 'eth_getLogs', 'eth_submitWork', 'eth_submitHashrate'
     ];
 
     /**
      * construct
      *
-     * @param string|\Web3\Providers\Provider $provider
+     * @param Provider|string $provider
      * @return void
      */
-    public function __construct($provider)
+    public function __construct(Provider|string $provider)
     {
         if (is_string($provider) && (filter_var($provider, FILTER_VALIDATE_URL) !== false)) {
             // check the uri schema
@@ -68,7 +68,7 @@ class Eth
      * @param array $arguments
      * @return void
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         if (empty($this->provider)) {
             throw new \RuntimeException('Please set provider first.');
@@ -113,7 +113,7 @@ class Eth
      * @param string $name
      * @return mixed
      */
-    public function __get($name)
+    public function __get(string $name)
     {
         $method = 'get' . ucfirst($name);
 
@@ -143,7 +143,7 @@ class Eth
     /**
      * getProvider
      * 
-     * @return \Web3\Providers\Provider
+     * @return Provider
      */
     public function getProvider()
     {
@@ -152,11 +152,11 @@ class Eth
 
     /**
      * setProvider
-     * 
-     * @param \Web3\Providers\Provider $provider
+     *
+     * @param Provider|null $provider
      * @return bool
      */
-    public function setProvider($provider)
+    public function setProvider(Provider|null $provider): bool
     {
         if ($provider instanceof Provider) {
             $this->provider = $provider;
@@ -171,7 +171,7 @@ class Eth
      * @param bool $status
      * @return void
      */
-    public function batch($status)
+    public function batch(bool $status): void
     {
         $status = is_bool($status);
 

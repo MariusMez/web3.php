@@ -19,7 +19,7 @@ class AddressFormatterTest extends TestCase
      * 
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->formatter = new AddressFormatter;
@@ -30,7 +30,7 @@ class AddressFormatterTest extends TestCase
      * 
      * @return void
      */
-    public function testFormat()
+    public function testFormat(): void
     {
         $formatter = $this->formatter;
 

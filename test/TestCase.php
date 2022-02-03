@@ -26,7 +26,7 @@ class TestCase extends BaseTestCase
      * 
      * @var string
      */
-    protected $testHost = 'http://localhost:8545';
+    protected $testHost = 'http://localhost:7545';
 
     /**
      * coinbase
@@ -40,7 +40,7 @@ class TestCase extends BaseTestCase
      * 
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         $web3 = new Web3($this->testHost);
         $this->web3 = $web3;
@@ -58,5 +58,5 @@ class TestCase extends BaseTestCase
      * 
      * @return void
      */
-    public function tearDown() {}
+    public function tearDown(): void {}
 }

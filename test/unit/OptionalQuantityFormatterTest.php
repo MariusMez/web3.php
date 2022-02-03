@@ -12,17 +12,16 @@ class OptionalQuantityFormatterTest extends TestCase
      * 
      * @var \Web3\Formatters\OptionalQuantityFormatter
      */
-    protected $formatter;
+    protected OptionalQuantityFormatter $formatter;
 
     /**
      * setUp
      * 
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-        $this->formatter = new OptionalQuantityFormatter;
     }
 
     /**
@@ -32,29 +31,27 @@ class OptionalQuantityFormatterTest extends TestCase
      */
     public function testFormat()
     {
-        $formatter = $this->formatter;
-
-        $this->assertEquals('0x927c0', $formatter->format(0x0927c0));
-        $this->assertEquals('0x927c0', $formatter->format('0x0927c0'));
-        $this->assertEquals('0x927c0', $formatter->format('0x927c0'));
-        $this->assertEquals('0x927c0', $formatter->format('600000'));
-        $this->assertEquals('0x927c0', $formatter->format(600000));
+        $this->assertEquals('0x927c0', OptionalQuantityFormatter::format(0x0927c0));
+        $this->assertEquals('0x927c0', OptionalQuantityFormatter::format('0x0927c0'));
+        $this->assertEquals('0x927c0', OptionalQuantityFormatter::format('0x927c0'));
+        $this->assertEquals('0x927c0', OptionalQuantityFormatter::format('600000'));
+        $this->assertEquals('0x927c0', OptionalQuantityFormatter::format(600000));
         
-        $this->assertEquals('0xea60', $formatter->format('0x0ea60'));
-        $this->assertEquals('0xea60', $formatter->format('0xea60'));
-        $this->assertEquals('0xea60', $formatter->format(0x0ea60));
-        $this->assertEquals('0xea60', $formatter->format('60000'));
-        $this->assertEquals('0xea60', $formatter->format(60000));
+        $this->assertEquals('0xea60', OptionalQuantityFormatter::format('0x0ea60'));
+        $this->assertEquals('0xea60', OptionalQuantityFormatter::format('0xea60'));
+        $this->assertEquals('0xea60', OptionalQuantityFormatter::format(0x0ea60));
+        $this->assertEquals('0xea60', OptionalQuantityFormatter::format('60000'));
+        $this->assertEquals('0xea60', OptionalQuantityFormatter::format(60000));
 
-        $this->assertEquals('0x0', $formatter->format(0x00));
-        $this->assertEquals('0x0', $formatter->format('0x00'));
-        $this->assertEquals('0x0', $formatter->format('0x0'));
-        $this->assertEquals('0x0', $formatter->format('0'));
-        $this->assertEquals('0x0', $formatter->format(0));
+        $this->assertEquals('0x0', OptionalQuantityFormatter::format(0x00));
+        $this->assertEquals('0x0', OptionalQuantityFormatter::format('0x00'));
+        $this->assertEquals('0x0', OptionalQuantityFormatter::format('0x0'));
+        $this->assertEquals('0x0', OptionalQuantityFormatter::format('0'));
+        $this->assertEquals('0x0', OptionalQuantityFormatter::format(0));
 
-        $this->assertEquals('latest', $formatter->format('latest'));
-        $this->assertEquals('earliest', $formatter->format('earliest'));
-        $this->assertEquals('pending', $formatter->format('pending'));
-        $this->assertEquals('0x0', $formatter->format('hello'));
+        $this->assertEquals('latest', OptionalQuantityFormatter::format('latest'));
+        $this->assertEquals('earliest', OptionalQuantityFormatter::format('earliest'));
+        $this->assertEquals('pending', OptionalQuantityFormatter::format('pending'));
+        $this->assertEquals('0x0', OptionalQuantityFormatter::format('hello'));
     }
 }

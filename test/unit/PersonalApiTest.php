@@ -27,7 +27,7 @@ class PersonalApiTest extends TestCase
      * 
      * @return void
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -169,7 +169,7 @@ class PersonalApiTest extends TestCase
                 return $this->fail($err->getMessage());
             }
             $this->newAccount = $account;
-            $this->assertTrue(is_string($account));
+            $this->assertIsString($account);
         });
 
         $this->web3->eth->sendTransaction([
@@ -180,7 +180,7 @@ class PersonalApiTest extends TestCase
             if ($err !== null) {
                 return $this->fail($err->getMessage());
             }
-            $this->assertTrue(is_string($transaction));
+            $this->assertIsString($transaction);
             $this->assertTrue(mb_strlen($transaction) === 66);
         });
 
@@ -192,7 +192,7 @@ class PersonalApiTest extends TestCase
             if ($err !== null) {
                 return $this->fail($err->getMessage());
             }
-            $this->assertTrue(is_string($transaction));
+            $this->assertIsString($transaction);
             $this->assertTrue(mb_strlen($transaction) === 66);
         });
     }
