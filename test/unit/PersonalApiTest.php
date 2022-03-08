@@ -187,7 +187,7 @@ class PersonalApiTest extends TestCase
         $personal->sendTransaction([
             'from' => $this->newAccount,
             'to' => $this->coinbase,
-            'value' => '0x01',
+            'value' => '0xfffffffff',
         ], '123456', function ($err, $transaction) {
             if ($err !== null) {
                 return $this->fail($err->getMessage());

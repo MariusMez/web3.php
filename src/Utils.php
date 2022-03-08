@@ -278,9 +278,7 @@ class Utils
      */
     public static function toString($value)
     {
-        $value = (string) $value;
-
-        return $value;
+        return (string) $value;
     }
 
     /**
@@ -428,7 +426,9 @@ class Utils
                 }
             }
             return $json['name'] . '(' . implode(',', $typeName) . ')';
-        } elseif (!is_array($json)) {
+        }
+
+        if (!is_array($json)) {
             throw new InvalidArgumentException('jsonMethodToString json must be array or stdClass.');
         }
         if (isset($json['name']) && strpos($json['name'], '(') > 0) {
@@ -515,9 +515,9 @@ class Utils
                     strlen($comps[1]),
                     isset($negative1) ? $negative1 : false
                 ];
-            } else {
-                $bn = new BigNumber($number);
             }
+
+            $bn = new BigNumber($number);
             if (isset($negative1)) {
                 $bn = $bn->multiply($negative1);
             }

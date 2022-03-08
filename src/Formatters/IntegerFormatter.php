@@ -30,7 +30,7 @@ class IntegerFormatter implements IFormatter
         $digit = 64;
 
         if (isset($arguments[1]) && is_numeric($arguments[1])) {
-            $digit = intval($arguments[1]);
+            $digit = (int)$arguments[1];
         }
         $bn = Utils::toBn($value);
         $bnHex = $bn->toHex(true);

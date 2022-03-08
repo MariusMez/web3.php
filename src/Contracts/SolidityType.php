@@ -171,7 +171,7 @@ class SolidityType
             if (!is_numeric($num)) {
                 $num = 1;
             } else {
-                $num = intval($num);
+                $num = (int)$num;
             }
             $count *= $num;
         }
@@ -208,7 +208,9 @@ class SolidityType
                 $result[] = $this->encode($val, $nestedName);
             }
             return $result;
-        } elseif ($this->isStaticArray($name)) {
+        }
+
+        if ($this->isStaticArray($name)) {
             $length = $this->staticArrayLength($name);
             $nestedName = $this->nestedName($name);
             $result = [];
@@ -245,7 +247,9 @@ class SolidityType
                 $result[] = $this->decode($value, $arrayStart + $i, $nestedName);
             }
             return $result;
-        } elseif ($this->isStaticArray($name)) {
+        }
+
+        if ($this->isStaticArray($name)) {
             $length = $this->staticArrayLength($name);
             $arrayStart = $offset;
 
@@ -258,7 +262,9 @@ class SolidityType
                 $result[] = $this->decode($value, $arrayStart + $i, $nestedName);
             }
             return $result;
-        } elseif ($this->isDynamicType()) {
+        }
+
+        if ($this->isDynamicType()) {
             $dynamicOffset = (int) Utils::toBn('0x' . mb_substr($value, $offset * 2, 64))->toString();
             $length = (int) Utils::toBn('0x' . mb_substr($value, $dynamicOffset * 2, 64))->toString();
             $roundedLength = floor(($length + 31) / 32);

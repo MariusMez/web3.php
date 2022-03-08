@@ -34,7 +34,11 @@ class QuantityFormatter implements IFormatter
             }
             $hex = preg_replace('/^0x0+(?!$)/', '', $value);
         } else {
-            $bn = Utils::toBn($value);
+            try {
+                $bn = Utils::toBn($value);
+            } catch (\ValueError $e) {
+                return '0x0';
+            }
             $hex = $bn->toHex(true);
         }
         if (empty($hex)) {

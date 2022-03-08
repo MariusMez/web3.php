@@ -94,7 +94,7 @@ class DynamicBytes extends SolidityType implements IType
         if (empty($checkZero)) {
             return '0';
         }
-        $size = intval(Utils::toBn('0x' . mb_substr($value, 0, 64))->toString());
+        $size = (int)Utils::toBn('0x' . mb_substr($value, 0, 64))->toString();
         $length = 2 * $size;
         
         return '0x' . mb_substr($value, 64, $length);

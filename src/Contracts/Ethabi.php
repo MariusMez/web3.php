@@ -299,14 +299,14 @@ class Ethabi
             if ($solidityType->isDynamicArray($nestedName)) {
                 $previousLength = 2;
 
-                for ($i=0; $i<count($encoded); $i++) {
+                for ($i=0, $iMax = count($encoded); $i< $iMax; $i++) {
                     if (isset($encoded[$i - 1])) {
                         $previousLength += abs($encoded[$i - 1][0]);
                     }
                     $result .= IntegerFormatter::format($offset + $i * $nestedStaticPartLength + $previousLength * 32);
                 }
             }
-            for ($i=0; $i<count($encoded); $i++) {
+            for ($i=0, $iMax = count($encoded); $i< $iMax; $i++) {
                 // $bn = Utils::toBn($result);
                 // $divided = $bn->divide(Utils::toBn(2));
 
@@ -319,7 +319,9 @@ class Ethabi
                 $result .= $this->encodeWithOffset($nestedName, $solidityType, $encoded[$i], $offset + $additionalOffset);
             }
             return mb_substr($result, 64);
-        } elseif ($solidityType->isStaticArray($type)) {
+        }
+
+        if ($solidityType->isStaticArray($type)) {
             $nestedName = $solidityType->nestedName($type);
             $nestedStaticPartLength = $solidityType->staticPartLength($type);
             $result = '';
@@ -327,14 +329,14 @@ class Ethabi
             if ($solidityType->isDynamicArray($nestedName)) {
                 $previousLength = 0;
 
-                for ($i=0; $i<count($encoded); $i++) {
+                for ($i=0, $iMax = count($encoded); $i< $iMax; $i++) {
                     if (isset($encoded[$i - 1])) {
                         $previousLength += abs($encoded[$i - 1])[0];
                     }
                     $result .= IntegerFormatter::format($offset + $i * $nestedStaticPartLength + $previousLength * 32);
                 }
             }
-            for ($i=0; $i<count($encoded); $i++) {
+            for ($i=0, $iMax = count($encoded); $i< $iMax; $i++) {
                 // $bn = Utils::toBn($result);
                 // $divided = $bn->divide(Utils::toBn(2));
 

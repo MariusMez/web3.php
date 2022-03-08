@@ -26,8 +26,6 @@ class BigNumberFormatter implements IFormatter
     public static function format($value)
     {
         $value = Utils::toString($value);
-        $bn = Utils::toBn($value);
-
-        return $bn;
+        return Utils::toBn($value);
     }
 }
