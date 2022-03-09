@@ -12,6 +12,7 @@
 namespace Web3;
 
 use InvalidArgumentException;
+use Web3\Contracts\Types\Struct;
 use Web3\Providers\Provider;
 use Web3\Providers\HttpProvider;
 use Web3\RequestManagers\RequestManager;
@@ -161,6 +162,7 @@ class Contract
             'dynamicBytes' => new DynamicBytes,
             'int' => new Integer,
             'string' => new Str,
+            'tuple' => new Struct,
             'uint' => new Uinteger,
         ]);
     }

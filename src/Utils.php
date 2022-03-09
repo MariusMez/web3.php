@@ -454,7 +454,6 @@ class Utils
     {
         if ($json instanceof stdClass) {
             $json = (array) $json;
-            $typeName = [];
 
             foreach ($json as $key => $param) {
                 if (is_array($param)) {
